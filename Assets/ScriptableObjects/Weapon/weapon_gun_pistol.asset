@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a8a086e2f3b4e4aa460cad41c87c18, type: 3}
   m_Name: weapon_gun_pistol
   m_EditorClassIdentifier: 
-  attackSpeed: 3
-  range: 4
-  ammo: {fileID: 11400000, guid: b46913b6d01db7b4a813dbef7dc14dc0, type: 2}
+  _attackSpeed: 3
+  _range: 5
+  _ammo: {fileID: 11400000, guid: b46913b6d01db7b4a813dbef7dc14dc0, type: 2}

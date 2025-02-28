@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b38ed8d73934c42aac9fd8254381ec, type: 3}
   m_Name: character_heavy_gunner
   m_EditorClassIdentifier: 
-  friendlyName: Heavy Gunner
-  health: 150
-  moveSpeed: 1
-  rotateSpeed: 1
-  weapon: {fileID: 11400000, guid: e581d415113635b42b8e9aa203d22213, type: 2}
+  _friendlyName: 
+  _health: 180
+  _moveSpeed: 1
+  _rotateSpeed: 1
+  _weapon: {fileID: 11400000, guid: e581d415113635b42b8e9aa203d22213, type: 2}

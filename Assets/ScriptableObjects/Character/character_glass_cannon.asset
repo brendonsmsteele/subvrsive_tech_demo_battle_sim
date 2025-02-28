@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b38ed8d73934c42aac9fd8254381ec, type: 3}
   m_Name: character_glass_cannon
   m_EditorClassIdentifier: 
-  friendlyName: Glass Cannon
-  health: 60
-  moveSpeed: 2
-  rotateSpeed: 2
-  weapon: {fileID: 11400000, guid: 160bd54a068868246ac0ce85743f9ef6, type: 2}
+  _friendlyName: 
+  _health: 60
+  _moveSpeed: 2
+  _rotateSpeed: 2
+  _weapon: {fileID: 11400000, guid: 160bd54a068868246ac0ce85743f9ef6, type: 2}

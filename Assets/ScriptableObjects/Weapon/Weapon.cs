@@ -3,7 +3,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewWeapon", menuName = "ScriptableObjects/Weapon", order = 1)]
 public class Weapon : ScriptableObject
 {
-    public float attackSpeed;
-    public float range;
-    public Ammo ammo;
+    [SerializeField] float _attackSpeed;
+    [SerializeField] float _range;
+    [SerializeField] Ammo _ammo;
+
+    public float attackSpeed => _attackSpeed;
+    public float range => _range;
+    public Ammo ammo => _ammo;
 }

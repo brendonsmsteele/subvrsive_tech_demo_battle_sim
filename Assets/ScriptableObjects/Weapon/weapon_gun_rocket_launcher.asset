@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a8a086e2f3b4e4aa460cad41c87c18, type: 3}
   m_Name: weapon_gun_rocket_launcher
   m_EditorClassIdentifier: 
-  attackSpeed: 1
-  range: 10
-  ammo: {fileID: 11400000, guid: 9c803a143e52f2d44bb7a0f25873c2a3, type: 2}
+  _attackSpeed: 1
+  _range: 10
+  _ammo: {fileID: 11400000, guid: 9c803a143e52f2d44bb7a0f25873c2a3, type: 2}

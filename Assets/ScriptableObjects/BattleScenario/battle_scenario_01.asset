@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d997d3eb6457b4090f86024469d128, type: 3}
   m_Name: battle_scenario_01
   m_EditorClassIdentifier: 
-  players:
+  _players:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

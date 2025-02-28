@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b38ed8d73934c42aac9fd8254381ec, type: 3}
   m_Name: character_survivor
   m_EditorClassIdentifier: 
-  friendlyName: Survivor
-  health: 110
-  moveSpeed: 3
-  rotateSpeed: 3
-  weapon: {fileID: 11400000, guid: b954ef65af44b1d4ab058f3068db1e62, type: 2}
+  _friendlyName: 
+  _health: 100
+  _moveSpeed: 3
+  _rotateSpeed: 3
+  _weapon: {fileID: 11400000, guid: b954ef65af44b1d4ab058f3068db1e62, type: 2}

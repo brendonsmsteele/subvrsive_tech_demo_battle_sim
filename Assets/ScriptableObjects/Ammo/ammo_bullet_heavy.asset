@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a94b40d60027e408449837f0916640, type: 3}
   m_Name: ammo_bullet_heavy
   m_EditorClassIdentifier: 
-  damage: 3
-  speed: 1
+  _damage: 3
+  _speed: 1
