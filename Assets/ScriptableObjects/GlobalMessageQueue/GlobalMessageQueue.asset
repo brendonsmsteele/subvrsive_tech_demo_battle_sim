@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffcb54b5c255f3141b5896e024fb1b7e, type: 3}
   m_Name: GlobalMessageQueue
   m_EditorClassIdentifier: 
-  debugEventName: AAAA
+  debugEventName: BATTLE_ENDED
   debugEventData: BBBB

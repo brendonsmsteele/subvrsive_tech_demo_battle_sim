@@ -3,6 +3,29 @@ using UnityEngine;
 public class BattleUI : MonoBehaviour
 {
     [SerializeField] MessageQueue messageQueue;
+    [SerializeField] ActiveBattleUI activeBattleUI;
+    [SerializeField] WonBattleUI wonBattleUI;
+
+    enum State
+    {
+        None,
+        BattleStarted,
+        BattleEnded
+    }
+
+    State _state;
+    State state { get { return _state; } 
+        set
+        {
+            if(_state != value)
+            {
+                _state = value;
+                activeBattleUI.gameObject.SetActive(_state == State.BattleStarted);
+                wonBattleUI.gameObject.SetActive(_state == State.BattleEnded);
+            }
+        }
+    }
+
     void Start()
     {
         
@@ -15,17 +38,27 @@ public class BattleUI : MonoBehaviour
 
     void OnEnable()
     {
-        messageQueue.Subscribe("", OnCharacterHealthChanged);
+        messageQueue.Subscribe(GlobalSlugs.BATTLE_STARTED, OnBattleStarted);
+        messageQueue.Subscribe(GlobalSlugs.BATTLE_ENDED, OnBattleEnded);
     }
 
     private void OnDisable()
     {
-        messageQueue.Unsubscribe("", OnCharacterHealthChanged);
+        messageQueue.Unsubscribe(GlobalSlugs.BATTLE_STARTED, OnBattleStarted);
+        messageQueue.Unsubscribe(GlobalSlugs.BATTLE_ENDED, OnBattleEnded);
     }
 
-    void OnCharacterHealthChanged(object obj)
+    void OnBattleStarted(object obj)
     {
         //var data = ()obj
-        Debug.Log($"Character health changed - Character: {"data.car"} {"data.health"}");
+        Debug.Log($"Battle started {obj}");
+        state = State.BattleStarted;
+    }
+
+    void OnBattleEnded(object obj)
+    {
+        //var data = ()obj
+        Debug.Log($"Battle ended {obj}");
+        state = State.BattleEnded;
     }
 }
