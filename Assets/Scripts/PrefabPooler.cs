@@ -7,7 +7,7 @@ public class PrefabPooler : MonoBehaviour
     public int initialPoolSize = 10;  // Starting pool size
     public int expandAmount = 5;  // How many new objects to add when expanding
 
-    private Queue<GameObject> pool = new Queue<GameObject>();
+    Queue<GameObject> pool = new Queue<GameObject>();
 
     void Start()
     {
@@ -15,7 +15,7 @@ public class PrefabPooler : MonoBehaviour
         ExpandPool(initialPoolSize);
     }
 
-    private void ExpandPool(int amount)
+    void ExpandPool(int amount)
     {
         for (int i = 0; i < amount; i++)
         {

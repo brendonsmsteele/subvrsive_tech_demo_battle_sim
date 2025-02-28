@@ -1,5 +1,6 @@
 public static class GlobalSlugs
 {
+    public static readonly string PRE_BATTLE_STARTED = nameof(PRE_BATTLE_STARTED);
     public static readonly string BATTLE_STARTED = nameof(BATTLE_STARTED);
     public static readonly string BATTLE_ENDED = nameof(BATTLE_ENDED);
 
