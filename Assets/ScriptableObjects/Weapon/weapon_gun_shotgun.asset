@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84b38ed8d73934c42aac9fd8254381ec, type: 3}
-  m_Name: character_glass_cannon
+  m_Script: {fileID: 11500000, guid: 68a8a086e2f3b4e4aa460cad41c87c18, type: 3}
+  m_Name: weapon_gun_shotgun
   m_EditorClassIdentifier: 
-  health: 60
-  moveSpeed: 2
-  rotateSpeed: 2
-  weapon: {fileID: 11400000, guid: 160bd54a068868246ac0ce85743f9ef6, type: 2}
+  attackSpeed: 2
+  range: 2
+  ammo: {fileID: 11400000, guid: 56468d116f008fc4c987beaa24c701d9, type: 2}

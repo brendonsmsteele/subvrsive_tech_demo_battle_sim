@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84b38ed8d73934c42aac9fd8254381ec, type: 3}
-  m_Name: character_glass_cannon
+  m_Name: character_heavy_gunner
   m_EditorClassIdentifier: 
-  health: 60
-  moveSpeed: 2
-  rotateSpeed: 2
-  weapon: {fileID: 11400000, guid: 160bd54a068868246ac0ce85743f9ef6, type: 2}
+  health: 150
+  moveSpeed: 1
+  rotateSpeed: 1
+  weapon: {fileID: 11400000, guid: e581d415113635b42b8e9aa203d22213, type: 2}
