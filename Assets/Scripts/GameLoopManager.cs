@@ -75,7 +75,10 @@ public class GameLoopManager : MonoBehaviour
     {
         while (true)
         {
+            gameState = GameState.PreGame;
             yield return new WaitForSeconds(delayGameStartup);
+
+            CompletePreGame();
             yield return new YieldPreGame(() => isPreGameComplete);
             gameState = GameState.ActiveGame;
 
@@ -123,7 +126,6 @@ public class GameLoopManager : MonoBehaviour
     {
         Debug.Log("Game has started!");
         messageQueue.Publish(GlobalSlugs.BATTLE_STARTED, "");
-
     }
 
     void HandlePostGame()

@@ -8,6 +8,11 @@ public class WonBattleUI : MonoBehaviour
 
     string winningPlayer;
 
+    private void Awake()
+    {
+        gameObject.SetActive(false);
+    }
+
     void Start()
     {
         
@@ -20,15 +25,15 @@ public class WonBattleUI : MonoBehaviour
 
     void OnEnable()
     {
-        messageQueue.Subscribe(GlobalSlugs.PLAYER_WON, OnPlayerWon);
+        messageQueue.Subscribe(GlobalSlugs.PLAYER_WON, HandlePlayerWon);
     }
 
     private void OnDisable()
     {
-        messageQueue.Unsubscribe(GlobalSlugs.PLAYER_WON, OnPlayerWon);
+        messageQueue.Unsubscribe(GlobalSlugs.PLAYER_WON, HandlePlayerWon);
     }
 
-    void OnPlayerWon(object obj)
+    void HandlePlayerWon(object obj)
     {
         winningPlayer = (string)obj;
         BindWinningPlayerText();

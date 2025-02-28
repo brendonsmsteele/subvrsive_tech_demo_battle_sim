@@ -1,16 +1,19 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SpawnPoints : MonoBehaviour
 {
-    public Transform[] points = new Transform[16];
+    [SerializeField] Transform[] _points = new Transform[0];
+    public List<Transform> points => new List<Transform>(_points);
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
-        
+        _points = GetComponentsInChildren<Transform>().Where(t => t != transform).ToArray();
+        Debug.Log(points.Count);
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -19,7 +22,7 @@ public class SpawnPoints : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
-        foreach(Transform point in points)
+        foreach(Transform point in _points)
         {
             Gizmos.DrawWireCube(point.position, Vector3.one);
             Gizmos.DrawRay(new Ray(point.position, point.forward));

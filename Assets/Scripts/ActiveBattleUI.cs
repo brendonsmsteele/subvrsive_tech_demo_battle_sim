@@ -10,6 +10,11 @@ public class ActiveBattleUI : MonoBehaviour
     int alivePlayerCount;
     bool isDirty;
 
+    private void Awake()
+    {
+        gameObject.SetActive(false);
+    }
+
     void Start()
     {
         
@@ -31,22 +36,22 @@ public class ActiveBattleUI : MonoBehaviour
 
     void OnEnable()
     {
-        messageQueue.Subscribe(GlobalSlugs.TOTAL_PLAYER_COUNT_CHANGED, OnTotalPlayerCountChanged);
-        messageQueue.Subscribe(GlobalSlugs.ALIVE_PLAYER_COUNT_CHANGED, OnAlivePlayerCountChanged);
+        messageQueue.Subscribe(GlobalSlugs.TOTAL_PLAYER_COUNT_CHANGED, HandleTotalPlayerCountChanged);
+        messageQueue.Subscribe(GlobalSlugs.ALIVE_PLAYER_COUNT_CHANGED, HandleAlivePlayerCountChanged);
     }
 
     private void OnDisable()
     {
-        messageQueue.Unsubscribe(GlobalSlugs.TOTAL_PLAYER_COUNT_CHANGED, OnTotalPlayerCountChanged);
-        messageQueue.Unsubscribe(GlobalSlugs.ALIVE_PLAYER_COUNT_CHANGED, OnAlivePlayerCountChanged);
+        messageQueue.Unsubscribe(GlobalSlugs.TOTAL_PLAYER_COUNT_CHANGED, HandleTotalPlayerCountChanged);
+        messageQueue.Unsubscribe(GlobalSlugs.ALIVE_PLAYER_COUNT_CHANGED, HandleAlivePlayerCountChanged);
     }
 
-    void OnAlivePlayerCountChanged(object obj)
+    void HandleAlivePlayerCountChanged(object obj)
     {
         alivePlayerCount = (int)obj;
         isDirty = true;
     }
-    void OnTotalPlayerCountChanged(object obj)
+    void HandleTotalPlayerCountChanged(object obj)
     {
         //var data = ()obj
         totalPlayerCount = (int)obj;

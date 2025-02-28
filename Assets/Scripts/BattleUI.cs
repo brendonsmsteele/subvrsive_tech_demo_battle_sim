@@ -38,22 +38,22 @@ public class BattleUI : MonoBehaviour
 
     void OnEnable()
     {
-        messageQueue.Subscribe(GlobalSlugs.BATTLE_STARTED, OnBattleStarted);
-        messageQueue.Subscribe(GlobalSlugs.BATTLE_ENDED, OnBattleEnded);
+        messageQueue.Subscribe(GlobalSlugs.BATTLE_STARTED, HandleBattleStarted);
+        messageQueue.Subscribe(GlobalSlugs.BATTLE_ENDED, HandleBattleEnded);
     }
 
     private void OnDisable()
     {
-        messageQueue.Unsubscribe(GlobalSlugs.BATTLE_STARTED, OnBattleStarted);
-        messageQueue.Unsubscribe(GlobalSlugs.BATTLE_ENDED, OnBattleEnded);
+        messageQueue.Unsubscribe(GlobalSlugs.BATTLE_STARTED, HandleBattleStarted);
+        messageQueue.Unsubscribe(GlobalSlugs.BATTLE_ENDED, HandleBattleEnded);
     }
 
-    void OnBattleStarted(object obj)
+    void HandleBattleStarted(object obj)
     {
         state = State.BattleStarted;
     }
 
-    void OnBattleEnded(object obj)
+    void HandleBattleEnded(object obj)
     {
         state = State.BattleEnded;
     }
