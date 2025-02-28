@@ -1,8 +1,14 @@
 using UnityEngine;
+using TMPro;
 
 public class ActiveBattleUI : MonoBehaviour
 {
     [SerializeField] MessageQueue messageQueue;
+    [SerializeField] TMP_Text alivePlayers;
+
+    int totalPlayerCount;
+    int alivePlayerCount;
+    bool isDirty;
 
     void Start()
     {
@@ -14,26 +20,41 @@ public class ActiveBattleUI : MonoBehaviour
         
     }
 
+    void LateUpdate()
+    {
+        if (isDirty)
+        {
+            BindPlayerCountText();
+            isDirty = false;
+        }
+    }
+
     void OnEnable()
     {
-        messageQueue.Subscribe(GlobalSlugs.LEADERBOARD_CHANGED, OnLeaderBoardChanged);
-        messageQueue.Subscribe(GlobalSlugs.PLAYER_HEALTH_CHANGED, OnCharacterHealthChanged);
+        messageQueue.Subscribe(GlobalSlugs.TOTAL_PLAYER_COUNT_CHANGED, OnTotalPlayerCountChanged);
+        messageQueue.Subscribe(GlobalSlugs.ALIVE_PLAYER_COUNT_CHANGED, OnAlivePlayerCountChanged);
     }
 
     private void OnDisable()
     {
-        messageQueue.Unsubscribe(GlobalSlugs.LEADERBOARD_CHANGED, OnLeaderBoardChanged);
-        messageQueue.Unsubscribe(GlobalSlugs.PLAYER_HEALTH_CHANGED, OnCharacterHealthChanged);
-    }
-    void OnLeaderBoardChanged(object obj)
-    {
-        //var data = ()obj
-        Debug.Log($"Leaderboard changed {obj}");
+        messageQueue.Unsubscribe(GlobalSlugs.TOTAL_PLAYER_COUNT_CHANGED, OnTotalPlayerCountChanged);
+        messageQueue.Unsubscribe(GlobalSlugs.ALIVE_PLAYER_COUNT_CHANGED, OnAlivePlayerCountChanged);
     }
 
-    void OnCharacterHealthChanged(object obj)
+    void OnAlivePlayerCountChanged(object obj)
+    {
+        alivePlayerCount = (int)obj;
+        isDirty = true;
+    }
+    void OnTotalPlayerCountChanged(object obj)
     {
         //var data = ()obj
-        Debug.Log($"Player health changed {obj}");
+        totalPlayerCount = (int)obj;
+        isDirty = true;
+    }
+
+    void BindPlayerCountText()
+    {
+        alivePlayers.text = $"{alivePlayerCount}/{totalPlayerCount}";
     }
 }

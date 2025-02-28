@@ -1,8 +1,12 @@
+using TMPro;
 using UnityEngine;
 
 public class WonBattleUI : MonoBehaviour
 {
     [SerializeField] MessageQueue messageQueue;
+    [SerializeField] TMP_Text winner;
+
+    string winningPlayer;
 
     void Start()
     {
@@ -26,7 +30,12 @@ public class WonBattleUI : MonoBehaviour
 
     void OnPlayerWon(object obj)
     {
-        //var data = ()obj
-        Debug.Log($"Player won {obj}");
+        winningPlayer = (string)obj;
+        BindWinningPlayerText();
+    }
+
+    void BindWinningPlayerText()
+    {
+        winner.text = $"Player {winningPlayer} won!";
     }
 }

@@ -50,15 +50,11 @@ public class BattleUI : MonoBehaviour
 
     void OnBattleStarted(object obj)
     {
-        //var data = ()obj
-        Debug.Log($"Battle started {obj}");
         state = State.BattleStarted;
     }
 
     void OnBattleEnded(object obj)
     {
-        //var data = ()obj
-        Debug.Log($"Battle ended {obj}");
         state = State.BattleEnded;
     }
 }

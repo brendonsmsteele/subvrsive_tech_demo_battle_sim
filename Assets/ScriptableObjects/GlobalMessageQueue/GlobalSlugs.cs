@@ -12,4 +12,6 @@ public static class GlobalSlugs
     public static readonly string PLAYER_WON = nameof(PLAYER_WON);
 
     public static readonly string LEADERBOARD_CHANGED = nameof(LEADERBOARD_CHANGED);
+    public static readonly string TOTAL_PLAYER_COUNT_CHANGED = nameof(TOTAL_PLAYER_COUNT_CHANGED);
+    public static readonly string ALIVE_PLAYER_COUNT_CHANGED = nameof(ALIVE_PLAYER_COUNT_CHANGED);
 }
