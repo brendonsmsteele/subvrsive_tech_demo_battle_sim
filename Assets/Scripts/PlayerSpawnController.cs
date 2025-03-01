@@ -4,7 +4,7 @@ public class PlayerSpawnController : MonoBehaviour
 {
     [SerializeField] MessageQueue messageQueue;
     [SerializeField] PrefabPooler pool;
-    [SerializeField] SpawnPoints spawnPoints;
+    [SerializeField] SpawnPointsController spawnPoints;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

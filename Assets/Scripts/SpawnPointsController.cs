@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class SpawnPoints : MonoBehaviour
+public class SpawnPointsController : MonoBehaviour
 {
     [SerializeField] Transform[] _points = new Transform[0];
     public List<Transform> points => new List<Transform>(_points);
