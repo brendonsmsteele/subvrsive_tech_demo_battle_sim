@@ -30,6 +30,7 @@ public static class GlobalSlugs
 
     public static readonly string AMMO_ADDED_TO_BATTLE = nameof(AMMO_ADDED_TO_BATTLE);
     public static readonly string AMMO_REMOVED_FROM_BATTLE = nameof(AMMO_REMOVED_FROM_BATTLE);
+    public static readonly string AMMO_DESPAWN = nameof(AMMO_DESPAWN);
     public static readonly string AMMO_STATE_CHANGED = nameof(AMMO_STATE_CHANGED);
     public static readonly string AMMO_POSITION_CHANGED = nameof(AMMO_POSITION_CHANGED);
 

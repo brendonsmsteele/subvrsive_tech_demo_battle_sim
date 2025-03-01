@@ -143,7 +143,7 @@ Transform:
   m_GameObject: {fileID: 4814903772669403462}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6298303, y: 4.185283, z: -1.9460622}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -163,3 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96cbdc79ce138e1488bb4de2cb96ce9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  messageQueue: {fileID: 11400000, guid: e02a4272351c80741b073313ed70a933, type: 2}
+  weapon: {fileID: 11400000, guid: 160bd54a068868246ac0ce85743f9ef6, type: 2}
+  ammoAnchor: {fileID: 8686524091317443596}

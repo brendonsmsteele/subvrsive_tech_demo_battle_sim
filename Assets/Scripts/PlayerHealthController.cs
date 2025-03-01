@@ -1,10 +1,10 @@
 using System;
 using UnityEngine;
 
-public class PlayerHealthController : MonoBehaviour, IHasGuid
+public class PlayerHealthController : MonoBehaviour, IHasParentGuid
 {
     [SerializeField] MessageQueue messageQueue;
-    public Guid id { get; set; }
+    public Guid parentID { get; set; }
 
     void OnEnable()
     {
@@ -18,6 +18,5 @@ public class PlayerHealthController : MonoBehaviour, IHasGuid
 
     void HandlePlayerStateChanged(object obj)
     {
-
     }
 }

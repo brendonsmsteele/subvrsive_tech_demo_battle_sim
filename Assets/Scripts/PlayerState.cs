@@ -13,20 +13,6 @@ public struct PlayerState
     public bool isDead;
     public Guid targetID;
 
-    public PlayerState(PlayerState state)
-    {
-        this.id = state.id;
-        this.position = state.position;
-        this.rotation = state.rotation;
-        this.health = state.health;
-        this.maxHealth = state.maxHealth;
-        this.moveSpeed = state.moveSpeed;
-        this.rotateSpeed = state.rotateSpeed;
-        this.attackDelay = state.attackDelay;
-        this.isDead = state.isDead;
-        this.targetID = state.targetID;
-    }
-
     public PlayerState(Guid id, Vector3 position, Quaternion rotation, float health, float maxHealth, float moveSpeed, float rotateSpeed, float attackDelay, bool isDead, Guid targetID)
     {
         this.id = id;
@@ -40,6 +26,20 @@ public struct PlayerState
         this.isDead = isDead;
         this.targetID = targetID;
     }
+
+    public PlayerState(PlayerState state)
+    {
+        this.id = state.id;
+        this.position = state.position;
+        this.rotation = state.rotation;
+        this.health = state.health;
+        this.maxHealth = state.maxHealth;
+        this.moveSpeed = state.moveSpeed;
+        this.rotateSpeed = state.rotateSpeed;
+        this.attackDelay = state.attackDelay;
+        this.isDead = state.isDead;
+        this.targetID = state.targetID;
+    }
 }
 
 public struct WeaponState
@@ -48,7 +48,20 @@ public struct WeaponState
     public float lastFired;
     public float attackSpeed;
     public float range;
+    public Vector3 ammoAnchorPosition;
+    public Quaternion ammoAnchorRotation;
     public Guid ownerID;
+
+    public WeaponState(Guid id, float lastFired, float attackSpeed, float range, Vector3 ammoAnchorPosition, Quaternion ammoAnchorRotation, Guid ownerID)
+    {
+        this.id = id;
+        this.lastFired = lastFired;
+        this.attackSpeed = attackSpeed;
+        this.range = range;
+        this.ammoAnchorPosition = ammoAnchorPosition;
+        this.ammoAnchorRotation = ammoAnchorRotation;
+        this.ownerID = ownerID;
+    }
 
     public WeaponState(WeaponState state)
     {
@@ -56,16 +69,9 @@ public struct WeaponState
         this.lastFired = state.lastFired;
         this.attackSpeed = state.attackSpeed;
         this.range = state.range;
+        this.ammoAnchorPosition = state.ammoAnchorPosition;
+        this.ammoAnchorRotation = state.ammoAnchorRotation;
         this.ownerID = state.ownerID;
-    }
-
-    public WeaponState(Guid id, float lastFired, float attackSpeed, float range, Guid ownerID)
-    {
-        this.id = id;
-        this.lastFired = lastFired;
-        this.attackSpeed = attackSpeed;
-        this.range = range;
-        this.ownerID = ownerID;
     }
 }
 
@@ -77,15 +83,6 @@ public struct AmmoState
     public float damage;
     public float speed;
 
-    public AmmoState(AmmoState state)
-    {
-        this.id = state.id;
-        this.position = state.position;
-        this.direction = state.direction;
-        this.damage = state.damage;
-        this.speed = state.speed;
-    }
-
     public AmmoState(Guid id, Vector3 position, Vector3 direction, float damage, float speed)
     {
         this.id = id;
@@ -93,6 +90,15 @@ public struct AmmoState
         this.direction = direction;
         this.damage = damage;
         this.speed = speed;
+    }
+
+    public AmmoState(AmmoState state)
+    {
+        this.id = state.id;
+        this.position = state.position;
+        this.direction = state.direction;
+        this.damage = state.damage;
+        this.speed = state.speed;
     }
 }
 

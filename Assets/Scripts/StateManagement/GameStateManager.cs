@@ -102,23 +102,23 @@ public class GameStateManager : MonoBehaviour
     //  Remove
     void HandlePlayerRemovedFromBattle(object obj)
     {
-        var player = (PlayerState)obj;
-        if (players.ContainsKey(player.id))
-            players.Remove(player.id);
+        var id = (Guid)obj;
+        if (players.ContainsKey(id))
+            players.Remove(id);
     }
 
     void HandleWeaponRemovedFromBattle(object obj)
     {
-        var weapon = (WeaponState)obj;
-        if (weapons.ContainsKey(weapon.id))
-            weapons.Remove(weapon.id);
+        var id = (Guid)obj;
+        if (weapons.ContainsKey(id))
+            weapons.Remove(id);
     }
 
     void HandleAmmoRemovedFromBattle(object obj)
     {
-        var ammoState = (AmmoState)obj;
-        if (ammo.ContainsKey(ammoState.id))
-            ammo.Remove(ammoState.id);
+        var id = (Guid)obj;
+        if (ammo.ContainsKey(id))
+            ammo.Remove(id);
     }
 
     //  State Changed

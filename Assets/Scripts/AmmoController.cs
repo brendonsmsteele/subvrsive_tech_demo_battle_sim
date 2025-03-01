@@ -5,10 +5,11 @@ public class AmmoController : MonoBehaviour
 {
     [SerializeField] MessageQueue messageQueue;
     [SerializeField] Ammo ammo;
+    Guid id;
 
-    Guid id = Guid.NewGuid();
     void OnEnable()
     {
+        id = Guid.NewGuid();
         messageQueue.Subscribe(GlobalSlugs.AMMO_STATE_CHANGED, HandleAmmoStateChanged);
 
         messageQueue.Publish(GlobalSlugs.AMMO_ADDED_TO_BATTLE, new AmmoState(id, transform.position, transform.forward, ammo.damage, ammo.speed));
@@ -18,7 +19,7 @@ public class AmmoController : MonoBehaviour
     {
         messageQueue.Unsubscribe(GlobalSlugs.AMMO_STATE_CHANGED, HandleAmmoStateChanged);
 
-        messageQueue.Publish(GlobalSlugs.AMMO_REMOVED_FROM_BATTLE, new AmmoState(id, transform.position, transform.forward, ammo.damage, ammo.speed));
+        messageQueue.Publish(GlobalSlugs.AMMO_REMOVED_FROM_BATTLE, id);
     }
 
     void OnTriggerEnter(Collider other)
@@ -28,6 +29,7 @@ public class AmmoController : MonoBehaviour
             var playerID = other.GetComponent<IHasGuid>().id;
             var playerHitState = new PlayerHitState(playerID, id);
             messageQueue.Publish(GlobalSlugs.PLAYER_HIT, playerHitState);
+            messageQueue.Publish(GlobalSlugs.AMMO_DESPAWN, gameObject);
         }
     }
 
