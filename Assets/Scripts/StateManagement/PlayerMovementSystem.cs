@@ -17,7 +17,7 @@ public class PlayerMovementSystem : MonoBehaviour
             Vector3 movement = new Vector3(1, 0, 1) * player.moveSpeed * Time.deltaTime;
             Vector3 toPosition = player.position + movement;
 
-            PlayerState newState = new PlayerState(player.id, toPosition, player.rotation, player.health, player.moveSpeed, player.rotateSpeed, player.attackDelay, player.isDead, player.targetID);
+            PlayerState newState = new PlayerState(player.id, toPosition, player.rotation, player.health, player.maxHealth, player.moveSpeed, player.rotateSpeed, player.attackDelay, player.isDead, player.targetID);
             messageQueue.Publish(GlobalSlugs.PLAYER_STATE_CHANGED, newState);
         }
     }

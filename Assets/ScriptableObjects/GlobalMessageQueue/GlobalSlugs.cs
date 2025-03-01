@@ -10,6 +10,7 @@ public static class GlobalSlugs
     public static readonly string PLAYER_REMOVED_FROM_BATTLE = nameof(PLAYER_REMOVED_FROM_BATTLE);
     public static readonly string PLAYER_STATE_CHANGED = nameof(PLAYER_STATE_CHANGED);
     public static readonly string PLAYER_HEALTH_CHANGED = nameof(PLAYER_HEALTH_CHANGED);
+    public static readonly string PLAYER_HIT = nameof(PLAYER_HIT);
     public static readonly string PLAYER_DIED = nameof(PLAYER_DIED);
     public static readonly string PLAYER_ATTACKED = nameof(PLAYER_ATTACKED);
     public static readonly string PLAYER_DAMAGED = nameof(PLAYER_DAMAGED);

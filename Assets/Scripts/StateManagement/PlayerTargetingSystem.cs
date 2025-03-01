@@ -20,7 +20,7 @@ public class PlayerTargetingSystem : MonoBehaviour
             {
                 var target = elgiblePlayersToBeTargeted[randIndex];
                 var targetID = target.Key;
-                PlayerState newState = new PlayerState(player.id, player.position, player.rotation, player.health, player.moveSpeed, player.rotateSpeed, player.attackDelay, player.isDead, targetID);
+                PlayerState newState = new PlayerState(player.id, player.position, player.rotation, player.health, player.maxHealth, player.moveSpeed, player.rotateSpeed, player.attackDelay, player.isDead, targetID);
                 messageQueue.Publish(GlobalSlugs.PLAYER_STATE_CHANGED, newState);
                 messageQueue.Publish(GlobalSlugs.PLAYER_ACQUIRED_TARGET, newState);
                 messageQueue.Publish(GlobalSlugs.PLAYER_TARGETED, target.Value);

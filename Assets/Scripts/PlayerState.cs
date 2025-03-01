@@ -6,6 +6,7 @@ public struct PlayerState
     public Vector3 position;
     public Quaternion rotation;
     public float health;
+    public float maxHealth;
     public float moveSpeed;
     public float rotateSpeed;
     public float attackDelay;
@@ -18,6 +19,7 @@ public struct PlayerState
         this.position = state.position;
         this.rotation = state.rotation;
         this.health = state.health;
+        this.maxHealth = state.maxHealth;
         this.moveSpeed = state.moveSpeed;
         this.rotateSpeed = state.rotateSpeed;
         this.attackDelay = state.attackDelay;
@@ -25,12 +27,13 @@ public struct PlayerState
         this.targetID = state.targetID;
     }
 
-    public PlayerState(Guid id, Vector3 position, Quaternion rotation, float health, float moveSpeed, float rotateSpeed, float attackDelay, bool isDead, Guid targetID)
+    public PlayerState(Guid id, Vector3 position, Quaternion rotation, float health, float maxHealth, float moveSpeed, float rotateSpeed, float attackDelay, bool isDead, Guid targetID)
     {
         this.id = id;
         this.position = position;
         this.rotation = rotation;
         this.health = health;
+        this.maxHealth = maxHealth;
         this.moveSpeed = moveSpeed;
         this.rotateSpeed = rotateSpeed;
         this.attackDelay = attackDelay;
@@ -90,5 +93,17 @@ public struct AmmoState
         this.direction = direction;
         this.damage = damage;
         this.speed = speed;
+    }
+}
+
+public struct PlayerHitState
+{
+    public Guid playerID;
+    public Guid ammoID;
+
+    public PlayerHitState(Guid playerID, Guid ammoID)
+    {
+        this.playerID = playerID;
+        this.ammoID = ammoID;
     }
 }

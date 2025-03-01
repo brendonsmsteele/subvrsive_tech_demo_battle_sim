@@ -1,33 +1,23 @@
+using System;
 using UnityEngine;
 
-public class PlayerHealthController : MonoBehaviour
+public class PlayerHealthController : MonoBehaviour, IHasGuid
 {
-    [SerializeField] bool _isDead = false;
-    public bool isDead => _isDead;
-
-    [SerializeField] float _health;
-    public float health => _health;
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
+    [SerializeField] MessageQueue messageQueue;
+    public Guid id { get; set; }
 
     void OnEnable()
     {
-        //messageQueue.Subscribe(GlobalSlugs.PLAYER_ADDED_TO_BATTLE, HandlePlayerAddedToBattle);
-        //messageQueue.Subscribe(GlobalSlugs.PLAYER_REMOVED_FROM_BATTLE, HandlePlayerRemovedFromBattle);
+        messageQueue.Subscribe(GlobalSlugs.PLAYER_HEALTH_CHANGED, HandlePlayerStateChanged);
     }
 
     void OnDisable()
     {
-        //messageQueue.Unsubscribe(GlobalSlugs.PLAYER_ADDED_TO_BATTLE, HandlePlayerAddedToBattle);
-        //messageQueue.Unsubscribe(GlobalSlugs.PLAYER_REMOVED_FROM_BATTLE, HandlePlayerRemovedFromBattle);
+        messageQueue.Unsubscribe(GlobalSlugs.PLAYER_HEALTH_CHANGED, HandlePlayerStateChanged);
+    }
+
+    void HandlePlayerStateChanged(object obj)
+    {
 
     }
 }

@@ -1,16 +1,30 @@
+using System;
 using UnityEngine;
 
-public class PlayerBodyController : MonoBehaviour
+public class PlayerBodyController : MonoBehaviour, IHasGuid
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] MessageQueue messageQueue;
+    [SerializeField] Material deadMaterial;
+    [SerializeField] Material aliveMaterial;
+
+    public Guid id { get; set; }
+
+    void OnEnable()
     {
-        
+        messageQueue.Subscribe(GlobalSlugs.PLAYER_DIED, HandlePlayerDied);
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnDisable()
     {
-        
+        messageQueue.Unsubscribe(GlobalSlugs.PLAYER_DIED, HandlePlayerDied);
+
+        GetComponent<Renderer>().sharedMaterial = aliveMaterial;
+    }
+
+    void HandlePlayerDied(object obj)
+    {
+        var player = (PlayerState)obj;
+        if (player.id == id)
+            GetComponent<Renderer>().sharedMaterial = deadMaterial;
     }
 }

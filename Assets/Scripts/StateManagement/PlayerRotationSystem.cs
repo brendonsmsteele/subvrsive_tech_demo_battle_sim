@@ -18,7 +18,7 @@ public class PlayerRotationSystem : MonoBehaviour
                 Quaternion rotationFromPlayerToTarget = Quaternion.LookRotation(directionFromPlayerToTarget, Vector3.up);
                 Quaternion smoothRotation = Quaternion.Slerp(player.rotation, rotationFromPlayerToTarget, player.rotateSpeed * Time.deltaTime);
 
-                PlayerState newState = new PlayerState(player.id, player.position, smoothRotation, player.health, player.moveSpeed, player.rotateSpeed, player.attackDelay, true, player.targetID);
+                PlayerState newState = new PlayerState(player.id, player.position, smoothRotation, player.health, player.maxHealth, player.moveSpeed, player.rotateSpeed, player.attackDelay, true, player.targetID);
                 messageQueue.Publish(GlobalSlugs.PLAYER_STATE_CHANGED, newState);
             }
         }
