@@ -31,12 +31,14 @@ public class PlayerRigController: MonoBehaviour, IHasGuid, IHasPrefabPooler
     void HandlePlayerRotationChanged(object obj)
     {
         var state = (PlayerState)obj;
-        transform.rotation = state.rotation;
+        if(state.id == id)
+            transform.rotation = state.rotation;
     }
 
     void HandlePlayerPositionChanged(object obj)
     {
         var state = (PlayerState)obj;
-        transform.position = state.position;
+        if (state.id == id)
+            transform.position = state.position;
     }
 }
