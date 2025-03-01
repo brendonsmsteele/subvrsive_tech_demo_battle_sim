@@ -21,6 +21,7 @@ public class PlayerMovementSystem : BaseSystem
 
             PlayerState newState = new PlayerState(player.id, toPosition, player.rotation, player.health, player.maxHealth, player.moveSpeed, player.rotateSpeed, player.attackDelay, player.isDead, player.targetID);
             messageQueue.Publish(GlobalSlugs.PLAYER_STATE_CHANGED, newState);
+            messageQueue.Publish(GlobalSlugs.PLAYER_POSITION_CHANGED, newState);
         }
     }
 }
