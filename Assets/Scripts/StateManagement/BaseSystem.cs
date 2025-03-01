@@ -18,6 +18,6 @@ public class BaseSystem : MonoBehaviour
 
     void HandleGameStateChanged(object obj)
     {
-        var gameState = (GameState)obj;
+        gameState = (GameState)obj;
     }
 }

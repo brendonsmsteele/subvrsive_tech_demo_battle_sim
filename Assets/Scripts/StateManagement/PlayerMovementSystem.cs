@@ -1,6 +1,5 @@
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using static GameLoopManager;
 
 public class PlayerMovementSystem : BaseSystem
 {
@@ -9,10 +8,12 @@ public class PlayerMovementSystem : BaseSystem
         if (gameState == GameState.None || gameState == GameState.PreGame) return;
 
         var players = GameStateManager.Instance.GetAllPlayers();
+        var playerIDs = GameStateManager.Instance.GetAllPlayerIDs();
 
-        foreach (var kvp in players)
+        for (int i = 0; i < playerIDs.Count(); i++)
         {
-            PlayerState player = kvp.Value;
+            var id = playerIDs[i];
+            PlayerState player = players[id];
             PlayerState targetPlayer = players[player.targetID];
 
             Vector3 movement = new Vector3(1, 0, 1) * player.moveSpeed * Time.deltaTime;

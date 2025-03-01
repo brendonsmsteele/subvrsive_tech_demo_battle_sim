@@ -13,14 +13,6 @@ public class GameLoopManager : MonoBehaviour
 
     Coroutine gameLoopCoroutine;
 
-    public enum GameState
-    {
-        None,
-        PreGame,
-        ActiveGame,
-        PostGame
-    }
-
     GameState _gameState;
 
     public GameState gameState
@@ -120,17 +112,20 @@ public class GameLoopManager : MonoBehaviour
     {
         Debug.Log("Handling PreGame setup...");
         messageQueue.Publish(GlobalSlugs.PRE_BATTLE_STARTED, "");
+        messageQueue.Publish(GlobalSlugs.GAME_STATE_CHANGED, gameState);
     }
 
     void HandleActiveGame()
     {
         Debug.Log("Game has started!");
         messageQueue.Publish(GlobalSlugs.BATTLE_STARTED, "");
+        messageQueue.Publish(GlobalSlugs.GAME_STATE_CHANGED, gameState);
     }
 
     void HandlePostGame()
     {
         Debug.Log("Handling PostGame cleanup...");
         messageQueue.Publish(GlobalSlugs.BATTLE_ENDED, "");
+        messageQueue.Publish(GlobalSlugs.GAME_STATE_CHANGED, gameState);
     }
 }

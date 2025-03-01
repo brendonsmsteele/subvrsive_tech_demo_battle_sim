@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static GameLoopManager;
 
 public class PlayerWinSystem : BaseSystem
 {

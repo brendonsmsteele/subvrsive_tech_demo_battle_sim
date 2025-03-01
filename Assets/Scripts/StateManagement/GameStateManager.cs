@@ -8,9 +8,14 @@ public class GameStateManager : MonoBehaviour
     public static GameStateManager Instance { get; private set; }
 
     [SerializeField] MessageQueue messageQueue;
-    Dictionary<Guid, PlayerState> players = new Dictionary<Guid, PlayerState>();
-    Dictionary<Guid, WeaponState> weapons = new Dictionary<Guid, WeaponState>();
-    Dictionary<Guid, AmmoState> ammo = new Dictionary<Guid, AmmoState>();
+    Dictionary<Guid, PlayerState> _players = new Dictionary<Guid, PlayerState>();
+    Dictionary<Guid, WeaponState> _weapons = new Dictionary<Guid, WeaponState>();
+    Dictionary<Guid, AmmoState> _ammo = new Dictionary<Guid, AmmoState>();
+
+
+    Guid[] _playersCachedIDs;
+    Guid[] _weaponsCachedIDs;
+    Guid[] _ammoCachedIDs;
 
     IReadOnlyDictionary<Guid, PlayerState> _readOnlyPlayers;
     IReadOnlyDictionary<Guid, WeaponState> _readOnlyWeapons;
@@ -59,19 +64,36 @@ public class GameStateManager : MonoBehaviour
         messageQueue.Unsubscribe(GlobalSlugs.AMMO_STATE_CHANGED, HandleAmmoStateChanged);
     }
 
+    // Get dictionaries
     public IReadOnlyDictionary<Guid, PlayerState> GetAllPlayers()
     {
-        return _readOnlyPlayers ??= players;
+        return _readOnlyPlayers ??= _players;
     }
 
     public IReadOnlyDictionary<Guid, WeaponState> GetAllWeapons()
     {
-        return _readOnlyWeapons ??= weapons;
+        return _readOnlyWeapons ??= _weapons;
     }
 
     public IReadOnlyDictionary<Guid, AmmoState> GetAllAmmo()
     {
-        return _readOnlyAmmo ??= ammo;
+        return _readOnlyAmmo ??= _ammo;
+    }
+
+    // Get ids
+    public Guid[] GetAllPlayerIDs()
+    {
+        return _playersCachedIDs;
+    }
+
+    public Guid[] GetAllWeaponIDs()
+    {
+        return _weaponsCachedIDs;
+    }
+
+    public Guid[] GetAllAmmoIDs()
+    {
+        return _ammoCachedIDs;
     }
 
     #region Handlers
@@ -80,22 +102,25 @@ public class GameStateManager : MonoBehaviour
     void HandlePlayerAddedToBattle(object obj)
     {
         var player = (PlayerState)obj;
-        if(!players.ContainsKey(player.id))
-            players[player.id] = player;
+        if(!_players.ContainsKey(player.id))
+            _players[player.id] = player;
+            _playersCachedIDs = _players.Keys.ToArray();
     }
 
     void HandleWeaponAddedToBattle(object obj)
     {
         var weapon = (WeaponState)obj;
-        if (!weapons.ContainsKey(weapon.id))
-            weapons[weapon.id] = weapon;
+        if (!_weapons.ContainsKey(weapon.id))
+            _weapons[weapon.id] = weapon;
+            _weaponsCachedIDs = _weapons.Keys.ToArray();
     }
 
     void HandleAmmoAddedToBattle(object obj)
     {
         var ammoState = (AmmoState)obj;
-        if (!ammo.ContainsKey(ammoState.id))
-            ammo[ammoState.id] = ammoState;
+        if (!_ammo.ContainsKey(ammoState.id))
+            _ammo[ammoState.id] = ammoState;
+            _ammoCachedIDs = _ammo.Keys.ToArray();
     }
 
 
@@ -103,41 +128,44 @@ public class GameStateManager : MonoBehaviour
     void HandlePlayerRemovedFromBattle(object obj)
     {
         var id = (Guid)obj;
-        if (players.ContainsKey(id))
-            players.Remove(id);
+        if (_players.ContainsKey(id))
+            _players.Remove(id);
+            _playersCachedIDs = _players.Keys.ToArray();
     }
 
     void HandleWeaponRemovedFromBattle(object obj)
     {
         var id = (Guid)obj;
-        if (weapons.ContainsKey(id))
-            weapons.Remove(id);
+        if (_weapons.ContainsKey(id))
+            _weapons.Remove(id);
+            _weaponsCachedIDs = _weapons.Keys.ToArray();
     }
 
     void HandleAmmoRemovedFromBattle(object obj)
     {
         var id = (Guid)obj;
-        if (ammo.ContainsKey(id))
-            ammo.Remove(id);
+        if (_ammo.ContainsKey(id))
+            _ammo.Remove(id);
+            _ammoCachedIDs = _ammo.Keys.ToArray();
     }
 
     //  State Changed
     void HandlePlayerStateChanged(object obj)
     {
         var player = (PlayerState)obj;
-        players[player.id] = player;
+        _players[player.id] = player;
     }
 
     void HandleWeaponStateChanged(object obj)
     {
         var weapon = (WeaponState)obj;
-        weapons[weapon.id] = weapon;
+        _weapons[weapon.id] = weapon;
     }
 
     void HandleAmmoStateChanged(object obj)
     {
         var ammoState = (AmmoState)obj;
-        ammo[ammoState.id] = ammoState;
+        _ammo[ammoState.id] = ammoState;
     }
 
     #endregion

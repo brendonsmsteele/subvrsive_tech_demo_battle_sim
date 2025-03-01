@@ -1,5 +1,5 @@
+using System.Linq;
 using UnityEngine;
-using static GameLoopManager;
 
 public class WeaponFireSystem : BaseSystem
 {
@@ -9,10 +9,12 @@ public class WeaponFireSystem : BaseSystem
 
         var players = GameStateManager.Instance.GetAllPlayers();
         var weapons = GameStateManager.Instance.GetAllWeapons();
+        var weaponIDs = GameStateManager.Instance.GetAllWeaponIDs();
 
-        foreach (var kvp in weapons)
+        for(int i = 0; i< weaponIDs.Count(); i++)
         {
-            WeaponState weapon = kvp.Value;
+            var id = weaponIDs[i];
+            WeaponState weapon = weapons[id];
             PlayerState player = players[weapon.ownerID];
 
             bool weaponOnCooldown = (Time.time - weapon.lastFired) < (weapon.attackSpeed + player.attackDelay);

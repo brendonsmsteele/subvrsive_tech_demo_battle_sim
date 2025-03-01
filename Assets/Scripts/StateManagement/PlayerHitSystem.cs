@@ -1,5 +1,4 @@
 using UnityEngine;
-using static GameLoopManager;
 
 public class PlayerHitSystem : BaseSystem
 {

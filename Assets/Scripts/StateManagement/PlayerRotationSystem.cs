@@ -1,6 +1,6 @@
 using System;
+using System.Linq;
 using UnityEngine;
-using static GameLoopManager;
 
 public class PlayerRotationSystem : BaseSystem
 {
@@ -9,10 +9,12 @@ public class PlayerRotationSystem : BaseSystem
         if (gameState == GameState.None || gameState == GameState.PreGame) return;
 
         var players = GameStateManager.Instance.GetAllPlayers();
+        var playerIDs = GameStateManager.Instance.GetAllPlayerIDs();
 
-        foreach (var kvp in players)
+        for (int i = 0; i < playerIDs.Count(); i++)
         {
-            PlayerState player = kvp.Value;
+            var id = playerIDs[i];
+            PlayerState player = players[id];
             if(player.targetID != Guid.Empty)
             {
                 PlayerState targetPlayer = players[player.targetID];

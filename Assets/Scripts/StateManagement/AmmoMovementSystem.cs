@@ -1,5 +1,5 @@
+using System.Linq;
 using UnityEngine;
-using static GameLoopManager;
 
 public class AmmoMovementSystem : BaseSystem
 {
@@ -8,10 +8,12 @@ public class AmmoMovementSystem : BaseSystem
         if (gameState == GameState.None || gameState == GameState.PreGame) return;
 
         var ammoStates = GameStateManager.Instance.GetAllAmmo();
+        var ammoIDs = GameStateManager.Instance.GetAllAmmoIDs();
 
-        foreach (var kvp in ammoStates)
+        for (int i = 0; i < ammoIDs.Count(); i++)
         {
-            AmmoState ammo = kvp.Value;
+            var id = ammoIDs[i];
+            AmmoState ammo = ammoStates[id];
             Vector3 movement = ammo.direction * ammo.speed * Time.deltaTime;
 
             AmmoState newState = new AmmoState(ammo.id, ammo.position + movement, ammo.direction, ammo.damage, ammo.speed);

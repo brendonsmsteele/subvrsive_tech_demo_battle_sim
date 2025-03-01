@@ -55,7 +55,6 @@ public class PlayerSpawnController : MonoBehaviour
     GameObject SpawnPlayer(Transform point)
     {
         var go = playerPool.GetObject(point.position, point.rotation);
-        Debug.Log(go.name);
         go.transform.SetParent(transform, true);
         var player = go.GetComponent<PlayerRigController>();
         player.pool = ammoPool;

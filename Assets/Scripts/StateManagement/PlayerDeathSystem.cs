@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-using static GameLoopManager;
+using System.Linq;
 
 public class PlayerDeathSystem : BaseSystem
 {
@@ -10,10 +7,12 @@ public class PlayerDeathSystem : BaseSystem
         if (gameState == GameState.None || gameState == GameState.PreGame) return;
 
         var players = GameStateManager.Instance.GetAllPlayers();
+        var playerIDs = GameStateManager.Instance.GetAllPlayerIDs();
 
-        foreach (var kvp in players)
+        for (int i = 0; i < playerIDs.Count(); i++)
         {
-            PlayerState player = kvp.Value;
+            var id = playerIDs[i];
+            PlayerState player = players[id];
 
             if (player.health <= 0 && !player.isDead)
             {
