@@ -8,7 +8,9 @@ public struct PlayerState
     public float health;
     public float moveSpeed;
     public float rotateSpeed;
+    public float attackDelay;
     public bool isDead;
+    public Guid targetID;
 
     public PlayerState(PlayerState state)
     {
@@ -18,10 +20,12 @@ public struct PlayerState
         this.health = state.health;
         this.moveSpeed = state.moveSpeed;
         this.rotateSpeed = state.rotateSpeed;
+        this.attackDelay = state.attackDelay;
         this.isDead = state.isDead;
+        this.targetID = state.targetID;
     }
 
-    public PlayerState(Guid id, Vector3 position, Quaternion rotation, float health, float moveSpeed, float rotateSpeed, bool isDead)
+    public PlayerState(Guid id, Vector3 position, Quaternion rotation, float health, float moveSpeed, float rotateSpeed, float attackDelay, bool isDead, Guid targetID)
     {
         this.id = id;
         this.position = position;
@@ -29,67 +33,61 @@ public struct PlayerState
         this.health = health;
         this.moveSpeed = moveSpeed;
         this.rotateSpeed = rotateSpeed;
+        this.attackDelay = attackDelay;
         this.isDead = isDead;
-    }
-}
-
-public struct PlayerBodyState
-{
-    public Guid id;
-    public bool isDamaged;
-    public bool isDead;
-
-    public PlayerBodyState(PlayerBodyState state)
-    {
-        this.id = state.id;
-        this.isDamaged = state.isDamaged;
-        this.isDead = state.isDead;
-    }
-
-    public PlayerBodyState(Guid id, bool isDamaged, bool isDead)
-    {
-        this.id = id;
-        this.isDamaged = isDamaged;
-        this.isDead = isDead;
+        this.targetID = targetID;
     }
 }
 
 public struct WeaponState
 {
     public Guid id;
+    public float lastFired;
     public float attackSpeed;
     public float range;
+    public Guid ownerID;
 
     public WeaponState(WeaponState state)
     {
         this.id = state.id;
+        this.lastFired = state.lastFired;
         this.attackSpeed = state.attackSpeed;
         this.range = state.range;
+        this.ownerID = state.ownerID;
     }
 
-    public WeaponState(Guid id, float attackSpeed, float range)
+    public WeaponState(Guid id, float lastFired, float attackSpeed, float range, Guid ownerID)
     {
         this.id = id;
+        this.lastFired = lastFired;
         this.attackSpeed = attackSpeed;
         this.range = range;
+        this.ownerID = ownerID;
     }
 }
 
 public struct AmmoState
 {
     public Guid id;
+    public Vector3 position;
+    public Vector3 direction;
     public float damage;
     public float speed;
+
     public AmmoState(AmmoState state)
     {
         this.id = state.id;
+        this.position = state.position;
+        this.direction = state.direction;
         this.damage = state.damage;
         this.speed = state.speed;
     }
 
-    public AmmoState(Guid id, float damage, float speed)
+    public AmmoState(Guid id, Vector3 position, Vector3 direction, float damage, float speed)
     {
         this.id = id;
+        this.position = position;
+        this.direction = direction;
         this.damage = damage;
         this.speed = speed;
     }

@@ -25,19 +25,12 @@ public class PlayerRigController: MonoBehaviour
     void OnEnable()
     {
         _id = new Guid();
-        var state = new PlayerState(_id, transform.position, transform.rotation, character.health, character.moveSpeed, character.rotateSpeed, false);
+        var state = new PlayerState(_id, transform.position, transform.rotation, character.health, character.moveSpeed, character.rotateSpeed, character.attackDelay, false, Guid.Empty);
         messageQueue.Publish(GlobalSlugs.PLAYER_ADDED_TO_BATTLE, state);
-
-        //messageQueue.Subscribe(GlobalSlugs.PLAYER_ADDED_TO_BATTLE, HandlePlayerAddedToBattle);
-        //messageQueue.Subscribe(GlobalSlugs.PLAYER_REMOVED_FROM_BATTLE, HandlePlayerRemovedFromBattle);
     }
 
     void OnDisable()
     {
         messageQueue.Publish(GlobalSlugs.PLAYER_REMOVED_FROM_BATTLE, _id);
-
-        //messageQueue.Unsubscribe(GlobalSlugs.PLAYER_ADDED_TO_BATTLE, HandlePlayerAddedToBattle);
-        //messageQueue.Unsubscribe(GlobalSlugs.PLAYER_REMOVED_FROM_BATTLE, HandlePlayerRemovedFromBattle);
-
     }
 }

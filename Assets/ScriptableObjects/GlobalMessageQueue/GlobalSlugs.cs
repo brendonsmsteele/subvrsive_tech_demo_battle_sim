@@ -19,10 +19,7 @@ public static class GlobalSlugs
     public static readonly string PLAYER_TARGETED = nameof(PLAYER_TARGETED);
     public static readonly string PLAYER_WON = nameof(PLAYER_WON);
 
-    public static readonly string PLAYER_BODY_ADDED_TO_BATTLE = nameof(PLAYER_BODY_ADDED_TO_BATTLE);
-    public static readonly string PLAYER_BODY_REMOVED_FROM_BATTLE = nameof(PLAYER_BODY_REMOVED_FROM_BATTLE);
-    public static readonly string PLAYER_BODY_STATE_CHANGED = nameof(PLAYER_BODY_STATE_CHANGED);
-
+    public static readonly string BATTLE_ENDED_IN_DRAW = nameof(BATTLE_ENDED_IN_DRAW);
 
     public static readonly string WEAPON_ADDED_TO_BATTLE = nameof(WEAPON_ADDED_TO_BATTLE);
     public static readonly string WEAPON_REMOVED_FROM_BATTLE = nameof(WEAPON_REMOVED_FROM_BATTLE);
