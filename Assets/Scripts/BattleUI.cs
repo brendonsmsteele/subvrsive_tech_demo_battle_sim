@@ -10,6 +10,7 @@ public class BattleUI : MonoBehaviour
     {
         None,
         BattleStarted,
+        PreBattleEnded,
         BattleEnded
     }
 
@@ -21,7 +22,7 @@ public class BattleUI : MonoBehaviour
             {
                 _state = value;
                 activeBattleUI.gameObject.SetActive(_state == State.BattleStarted);
-                wonBattleUI.gameObject.SetActive(_state == State.BattleEnded);
+                wonBattleUI.gameObject.SetActive(_state == State.PreBattleEnded || _state == State.BattleEnded);
             }
         }
     }
@@ -39,12 +40,14 @@ public class BattleUI : MonoBehaviour
     void OnEnable()
     {
         messageQueue.Subscribe(GlobalSlugs.BATTLE_STARTED, HandleBattleStarted);
+        messageQueue.Subscribe(GlobalSlugs.PRE_BATTLE_ENDED, HandlePreBattleEnded);
         messageQueue.Subscribe(GlobalSlugs.BATTLE_ENDED, HandleBattleEnded);
     }
 
     private void OnDisable()
     {
         messageQueue.Unsubscribe(GlobalSlugs.BATTLE_STARTED, HandleBattleStarted);
+        messageQueue.Subscribe(GlobalSlugs.PRE_BATTLE_ENDED, HandlePreBattleEnded);
         messageQueue.Unsubscribe(GlobalSlugs.BATTLE_ENDED, HandleBattleEnded);
     }
 
@@ -56,5 +59,10 @@ public class BattleUI : MonoBehaviour
     void HandleBattleEnded(object obj)
     {
         state = State.BattleEnded;
+    }
+
+    void HandlePreBattleEnded(object obj)
+    {
+        state = State.PreBattleEnded;
     }
 }

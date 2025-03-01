@@ -1,11 +1,13 @@
 using System;
 using UnityEngine;
+using static GameLoopManager;
 
-public class PlayerRotationSystem : MonoBehaviour
+public class PlayerRotationSystem : BaseSystem
 {
-    [SerializeField] MessageQueue messageQueue;
     void Update()
     {
+        if (gameState == GameState.None || gameState == GameState.PreGame) return;
+
         var players = GameStateManager.Instance.GetAllPlayers();
 
         foreach (var kvp in players)

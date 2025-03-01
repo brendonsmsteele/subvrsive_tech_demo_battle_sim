@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static GameLoopManager;
 
-public class PlayerMovementSystem : MonoBehaviour
+public class PlayerMovementSystem : BaseSystem
 {
-    [SerializeField] MessageQueue messageQueue;
-
     void Update()
     {
+        if (gameState == GameState.None || gameState == GameState.PreGame) return;
+
         var players = GameStateManager.Instance.GetAllPlayers();
 
         foreach (var kvp in players)

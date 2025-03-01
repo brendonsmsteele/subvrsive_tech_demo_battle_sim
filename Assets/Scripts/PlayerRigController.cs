@@ -1,13 +1,14 @@
 using UnityEngine;
 using System;
 
-public class PlayerRigController: MonoBehaviour, IHasGuid
+public class PlayerRigController: MonoBehaviour, IHasGuid, IHasPrefabPooler
 {
     [SerializeField] MessageQueue messageQueue;
     [SerializeField] Character character;
 
     [SerializeField] Guid _id;
     Guid IHasGuid.id => _id;
+    public PrefabPooler pool { get; set; }
 
     void OnEnable()
     {
@@ -19,5 +20,6 @@ public class PlayerRigController: MonoBehaviour, IHasGuid
     void OnDisable()
     {
         messageQueue.Publish(GlobalSlugs.PLAYER_REMOVED_FROM_BATTLE, _id);
+        pool = null;
     }
 }

@@ -1,13 +1,14 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using static GameLoopManager;
 
-public class PlayerTargetingSystem : MonoBehaviour
+public class PlayerTargetingSystem : BaseSystem
 {
-    [SerializeField] MessageQueue messageQueue;
-
     void Update()
     {
+        if (gameState != GameState.ActiveGame) return;
+
         var players = GameStateManager.Instance.GetAllPlayers();
         var elgiblePlayersToBeTargeted = players.Where(p => !p.Value.isDead).ToList();
 

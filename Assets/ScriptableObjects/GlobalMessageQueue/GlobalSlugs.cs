@@ -20,6 +20,7 @@ public static class GlobalSlugs
     public static readonly string PLAYER_TARGETED = nameof(PLAYER_TARGETED);
     public static readonly string PLAYER_WON = nameof(PLAYER_WON);
 
+    public static readonly string PRE_BATTLE_ENDED = nameof(PRE_BATTLE_ENDED);
     public static readonly string BATTLE_ENDED_IN_DRAW = nameof(BATTLE_ENDED_IN_DRAW);
 
     public static readonly string WEAPON_ADDED_TO_BATTLE = nameof(WEAPON_ADDED_TO_BATTLE);
@@ -37,4 +38,5 @@ public static class GlobalSlugs
     public static readonly string LEADERBOARD_CHANGED = nameof(LEADERBOARD_CHANGED);
     public static readonly string TOTAL_PLAYER_COUNT_CHANGED = nameof(TOTAL_PLAYER_COUNT_CHANGED);
     public static readonly string ALIVE_PLAYER_COUNT_CHANGED = nameof(ALIVE_PLAYER_COUNT_CHANGED);
+    public static readonly string GAME_STATE_CHANGED = nameof(GAME_STATE_CHANGED);
 }

@@ -1,17 +1,17 @@
+using System.Drawing;
 using UnityEngine;
 
 public class PlayerSpawnController : MonoBehaviour
 {
     [SerializeField] MessageQueue messageQueue;
-    [SerializeField] PrefabPooler pool;
+    [SerializeField] PrefabPooler playerPool;
+    [SerializeField] PrefabPooler ammoPool;
     [SerializeField] SpawnPointsController spawnPoints;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -41,15 +41,24 @@ public class PlayerSpawnController : MonoBehaviour
 
     void ClearPlayers()
     {
-        pool.ReturnlAllObjects();
+        playerPool.ReturnlAllObjects();
     }
 
     void SpawnPlayers()
     {
         foreach (Transform point in spawnPoints.points)
         {
-            var go = pool.GetObject(point.position, point.rotation);
-            go.transform.SetParent(transform, true);
+            var go = SpawnPlayer(point);
         }
+    }
+
+    GameObject SpawnPlayer(Transform point)
+    {
+        var go = playerPool.GetObject(point.position, point.rotation);
+        Debug.Log(go.name);
+        go.transform.SetParent(transform, true);
+        var player = go.GetComponent<PlayerRigController>();
+        player.pool = ammoPool;
+        return go;
     }
 }

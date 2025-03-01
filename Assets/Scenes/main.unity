@@ -1380,7 +1380,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messageQueue: {fileID: 11400000, guid: e02a4272351c80741b073313ed70a933, type: 2}
-  pool: {fileID: 1737307185}
+  playerPool: {fileID: 1737307185}
+  ammoPool: {fileID: 1834816792}
   spawnPoints: {fileID: 600171576}
 --- !u!1 &944387841
 GameObject:
@@ -2116,7 +2117,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messageQueue: {fileID: 11400000, guid: e02a4272351c80741b073313ed70a933, type: 2}
-  ammoPooler: {fileID: 1834816792}
 --- !u!1 &1820813178
 GameObject:
   m_ObjectHideFlags: 0

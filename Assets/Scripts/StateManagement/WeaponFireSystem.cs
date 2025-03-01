@@ -1,11 +1,12 @@
 using UnityEngine;
+using static GameLoopManager;
 
-public class WeaponFireSystem : MonoBehaviour
+public class WeaponFireSystem : BaseSystem
 {
-    [SerializeField] MessageQueue messageQueue;
-
     void Update()
     {
+        if (gameState != GameState.ActiveGame) return;
+
         var players = GameStateManager.Instance.GetAllPlayers();
         var weapons = GameStateManager.Instance.GetAllWeapons();
 
@@ -19,6 +20,7 @@ public class WeaponFireSystem : MonoBehaviour
             if (!weaponOnCooldown)
             {
                 // Fire
+                Debug.Log($"Player {weapon.ownerID}, fired weapon {weapon.id}");
                 lastFired = Time.time;
                 WeaponState newState = new WeaponState(weapon.id, lastFired, weapon.attackSpeed, weapon.range, weapon.ammoAnchorPosition, weapon.ammoAnchorRotation, weapon.ownerID);
                 messageQueue.Publish(GlobalSlugs.WEAPON_STATE_CHANGED, newState);

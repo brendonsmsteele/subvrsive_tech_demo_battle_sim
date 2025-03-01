@@ -26,6 +26,7 @@ public class WeaponController : MonoBehaviour, IHasParentGuid
         messageQueue.Unsubscribe(GlobalSlugs.WEAPON_FIRED, HandleWeaponFired);
 
         messageQueue.Publish(GlobalSlugs.WEAPON_REMOVED_FROM_BATTLE, _id);
+        _parentID = Guid.Empty;
     }
 
     void HandleWeaponFired(object obj)

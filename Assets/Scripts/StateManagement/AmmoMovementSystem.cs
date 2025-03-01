@@ -1,11 +1,12 @@
 using UnityEngine;
+using static GameLoopManager;
 
-public class AmmoMovementSystem : MonoBehaviour
+public class AmmoMovementSystem : BaseSystem
 {
-    [SerializeField] MessageQueue messageQueue;
-
     void Update()
     {
+        if (gameState == GameState.None || gameState == GameState.PreGame) return;
+
         var ammoStates = GameStateManager.Instance.GetAllAmmo();
 
         foreach (var kvp in ammoStates)
