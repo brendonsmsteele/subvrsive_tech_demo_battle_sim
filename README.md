@@ -1,12 +1,12 @@
 # subvrsive_tech_demo_battle_sim
 An MVP demo written to simulate battle between many characters, with a focus on scalable architecture.
 
-How would your code change if weapons had special effects, like the ability to make targets catch fire?
+### How would your code change if weapons had special effects, like the ability to make targets catch fire?
 
 I would introduce a new ScriptableObject data class called Effect.cs, which would store effect properties and be referenced by ID within AmmoState. When an ammo object triggers a collision via OnTriggerStay, it would request the corresponding effect from EffectFactory.cs. The factory would then instantiate the effect at the collision point, allowing it to animate naturally and follow the standard life/death cycle of a GameObject component.
 
 
-How might this system be incorporated into a larger items and inventory system?
+### How might this system be incorporated into a larger items and inventory system?
 
 The Unity Addressables API is a powerful tool for loading AssetBundles, allowing us to dynamically download only the necessary data after installation. This approach optimizes cold storage memory usage by ensuring that we load assets on demand rather than keeping everything in memory.
 
