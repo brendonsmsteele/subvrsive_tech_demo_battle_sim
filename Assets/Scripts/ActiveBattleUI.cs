@@ -51,9 +51,9 @@ public class ActiveBattleUI : MonoBehaviour
         alivePlayerCount = (int)obj;
         isDirty = true;
     }
+
     void HandleTotalPlayerCountChanged(object obj)
     {
-        //var data = ()obj
         totalPlayerCount = (int)obj;
         isDirty = true;
     }

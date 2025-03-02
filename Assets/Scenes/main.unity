@@ -537,7 +537,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &483330330
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1138,7 +1138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messageQueue: {fileID: 11400000, guid: e02a4272351c80741b073313ed70a933, type: 2}
-  activeBattleUI: {fileID: 1635474757}
+  activeBattleUI: {fileID: 0}
   wonBattleUI: {fileID: 537626845}
 --- !u!1 &732622042
 GameObject:
@@ -1370,7 +1370,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &824288523
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2044,7 +2044,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1635474756}
-  - component: {fileID: 1635474757}
   m_Layer: 5
   m_Name: ActiveBattleUI
   m_TagString: Untagged
@@ -2073,20 +2072,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1721.0931, y: 990.46564}
   m_SizeDelta: {x: 397.8919, y: 179.074}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1635474757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1635474755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ec5295ea5cfbe447b45f1d93971ecc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messageQueue: {fileID: 11400000, guid: e02a4272351c80741b073313ed70a933, type: 2}
-  alivePlayers: {fileID: 483330331}
 --- !u!1 &1704542220
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,6 @@ using UnityEngine;
 public class BattleUI : MonoBehaviour
 {
     [SerializeField] MessageQueue messageQueue;
-    [SerializeField] ActiveBattleUI activeBattleUI;
     [SerializeField] WonBattleUI wonBattleUI;
 
     enum State
@@ -21,7 +20,6 @@ public class BattleUI : MonoBehaviour
             if(_state != value)
             {
                 _state = value;
-                activeBattleUI.gameObject.SetActive(_state == State.BattleStarted);
                 wonBattleUI.gameObject.SetActive(_state == State.PreBattleEnded || _state == State.BattleEnded);
             }
         }
