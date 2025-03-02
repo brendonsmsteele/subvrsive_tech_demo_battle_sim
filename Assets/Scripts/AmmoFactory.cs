@@ -20,11 +20,6 @@ public class AmmoFactory : MonoBehaviour, IFactory<AmmoController>
         }
     }
 
-    public void ReturnAllObjects()
-    {
-        ammoPooler.ReturnAllObjects();
-    }
-
     public AmmoController GetObject(Vector3 position, Quaternion rotation)
     {
         GameObject go = ammoPooler.GetObject(position, rotation);

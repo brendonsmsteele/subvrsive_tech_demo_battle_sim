@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ public class WonBattleUI : MonoBehaviour
     [SerializeField] MessageQueue messageQueue;
     [SerializeField] TMP_Text winner;
 
-    string winningPlayer;
+    Guid winningPlayer;
 
     private void Awake()
     {
@@ -35,7 +36,7 @@ public class WonBattleUI : MonoBehaviour
 
     void HandlePlayerWon(object obj)
     {
-        winningPlayer = (string)obj;
+        winningPlayer = (Guid)obj;
         BindWinningPlayerText();
     }
 

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: character_glass_cannon
   m_EditorClassIdentifier: 
   _friendlyName: 
-  _health: 60
+  _health: 30
   _moveSpeed: 2
   _rotateSpeed: 2
+  _attackDelay: 0
   _weapon: {fileID: 11400000, guid: 160bd54a068868246ac0ce85743f9ef6, type: 2}

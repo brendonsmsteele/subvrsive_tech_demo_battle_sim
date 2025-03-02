@@ -39,4 +39,6 @@ public static class GlobalSlugs
     public static readonly string TOTAL_PLAYER_COUNT_CHANGED = nameof(TOTAL_PLAYER_COUNT_CHANGED);
     public static readonly string ALIVE_PLAYER_COUNT_CHANGED = nameof(ALIVE_PLAYER_COUNT_CHANGED);
     public static readonly string GAME_STATE_CHANGED = nameof(GAME_STATE_CHANGED);
+
+    public static readonly string GAME_ENDED = nameof(GAME_ENDED);
 }

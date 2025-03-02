@@ -15,7 +15,9 @@ public class PlayerRotationSystem : BaseSystem
         {
             var id = playerIDs[i];
             PlayerState player = players[id];
-            if(player.targetID != Guid.Empty)
+            if (player.isDead) continue;
+
+            if (player.targetID != Guid.Empty)
             {
                 PlayerState targetPlayer = players[player.targetID];
                 Vector3 directionFromPlayerToTarget = targetPlayer.position - player.position;

@@ -44,17 +44,11 @@ public class SpawnPointsController : MonoBehaviour
 
     void HandlePreBattleStarted(object obj)
     {
-        ClearPlayers();
         SpawnPlayers();
     }
 
     void HandleBattleEnded(object obj)
     {
-    }
-
-    void ClearPlayers()
-    {
-        PlayerFactory.Instance.ReturnAllObjects();
     }
 
     void SpawnPlayers()

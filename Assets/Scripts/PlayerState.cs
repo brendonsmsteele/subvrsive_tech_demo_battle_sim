@@ -48,18 +48,14 @@ public struct WeaponState
     public float lastFired;
     public float attackSpeed;
     public float range;
-    public Vector3 ammoAnchorPosition;
-    public Quaternion ammoAnchorRotation;
     public Guid ownerID;
 
-    public WeaponState(Guid id, float lastFired, float attackSpeed, float range, Vector3 ammoAnchorPosition, Quaternion ammoAnchorRotation, Guid ownerID)
+    public WeaponState(Guid id, float lastFired, float attackSpeed, float range, Guid ownerID)
     {
         this.id = id;
         this.lastFired = lastFired;
         this.attackSpeed = attackSpeed;
         this.range = range;
-        this.ammoAnchorPosition = ammoAnchorPosition;
-        this.ammoAnchorRotation = ammoAnchorRotation;
         this.ownerID = ownerID;
     }
 
@@ -69,8 +65,6 @@ public struct WeaponState
         this.lastFired = state.lastFired;
         this.attackSpeed = state.attackSpeed;
         this.range = state.range;
-        this.ammoAnchorPosition = state.ammoAnchorPosition;
-        this.ammoAnchorRotation = state.ammoAnchorRotation;
         this.ownerID = state.ownerID;
     }
 }

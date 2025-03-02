@@ -21,13 +21,6 @@ public class PlayerFactory : MonoBehaviour, IFactory<PlayerRigController>
         }
     }
 
-    
-
-    public void ReturnAllObjects()
-    {
-        playerPool.ReturnAllObjects();
-    }
-
     public PlayerRigController GetObject(Vector3 position, Quaternion rotation)
     {
         GameObject go = playerPool.GetObject(position, rotation);

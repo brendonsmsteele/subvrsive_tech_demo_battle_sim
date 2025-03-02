@@ -15,6 +15,8 @@ public class PlayerMovementSystem : BaseSystem
         {
             var id = playerIDs[i];
             PlayerState player = players[id];
+            if (player.isDead) continue;
+
             PlayerState targetPlayer = players[player.targetID];
 
             float stopShortDistance = 10f;

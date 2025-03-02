@@ -17,6 +17,8 @@ public class PlayerTargetingSystem : BaseSystem
             {
                 var id = playerIDs[i];
                 PlayerState player = players[id];
+                if (player.isDead) continue;
+
                 int randIndex = UnityEngine.Random.Range(0, elgiblePlayersToBeTargeted.Count);
                 var target = elgiblePlayersToBeTargeted[randIndex];
 

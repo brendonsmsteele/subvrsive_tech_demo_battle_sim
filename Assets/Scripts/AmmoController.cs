@@ -13,14 +13,12 @@ public class AmmoController : MonoBehaviour, IHasGuid
     {
         _id = Guid.NewGuid();
         messageQueue.Subscribe(GlobalSlugs.AMMO_STATE_CHANGED, HandleAmmoStateChanged);
-
         messageQueue.Publish(GlobalSlugs.AMMO_ADDED_TO_BATTLE, new AmmoState(id, transform.position, transform.forward, ammo.damage, ammo.speed));
     }
 
     void OnDisable()
     {
         messageQueue.Unsubscribe(GlobalSlugs.AMMO_STATE_CHANGED, HandleAmmoStateChanged);
-
         messageQueue.Publish(GlobalSlugs.AMMO_REMOVED_FROM_BATTLE, id);
         _id = Guid.Empty;
     }
@@ -29,11 +27,11 @@ public class AmmoController : MonoBehaviour, IHasGuid
     {
         if(other.tag == "Player")
         {
-            var playerID = other.GetComponent<IHasGuid>().id;
+            var playerID = other.GetComponent<PlayerRigController>().id;
             var playerHitState = new PlayerHitState(playerID, id);
             messageQueue.Publish(GlobalSlugs.PLAYER_HIT, playerHitState);
-            messageQueue.Publish(GlobalSlugs.AMMO_DESPAWN, gameObject);
         }
+        AmmoFactory.Instance.ReturnObject(this.gameObject);
     }
 
     void HandleAmmoStateChanged(object obj)

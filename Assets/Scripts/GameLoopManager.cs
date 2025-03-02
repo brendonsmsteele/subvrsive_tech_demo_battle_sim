@@ -46,12 +46,20 @@ public class GameLoopManager : MonoBehaviour
         StartGameLoop();
     }
 
-    void Update()
+
+    void OnEnable()
     {
-        if (_gameState == GameState.ActiveGame)
-        {
-            Tick();
-        }
+        messageQueue.Subscribe(GlobalSlugs.GAME_ENDED, HandleGameCompleted);
+    }
+
+    void OnDisable()
+    {
+        messageQueue.Unsubscribe(GlobalSlugs.GAME_ENDED, HandleGameCompleted);
+    }
+
+    void HandleGameCompleted(object obj)
+    {
+        CompleteActiveGame();
     }
 
     #region GameLoop
@@ -78,29 +86,7 @@ public class GameLoopManager : MonoBehaviour
             gameState = GameState.PostGame;
 
             yield return new YieldPostGame(() => isPostGameComplete);
-
-            // Loop or End?
-            Debug.Log("Game Cycle Complete. Restarting...");
-            RestartGame();
         }
-    }
-    public void RestartGame()
-    {
-        if (gameLoopCoroutine != null)
-        {
-            StopCoroutine(gameLoopCoroutine);
-        }
-
-        isPreGameComplete = false;
-        isActiveGameComplete = false;
-        isPostGameComplete = false;
-
-        gameLoopCoroutine = StartCoroutine(GameLoop());
-    }
-
-    void Tick()
-    {
-        Debug.Log("Game Tick...");
     }
 
     public void CompletePreGame() => isPreGameComplete = true;

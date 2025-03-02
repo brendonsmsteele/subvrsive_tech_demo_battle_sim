@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 9069691903789255085}
   - component: {fileID: 4392471835408440263}
+  - component: {fileID: 3723909313597397176}
   m_Layer: 0
   m_Name: PlayerRigController
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,6 +49,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageQueue: {fileID: 11400000, guid: e02a4272351c80741b073313ed70a933, type: 2}
   character: {fileID: 11400000, guid: 3adf8e40dd5f3184a954502283348a2a, type: 2}
+--- !u!136 &3723909313597397176
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054340782891633335}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &2268592615226950167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67,6 +91,10 @@ PrefabInstance:
     - target: {fileID: 4814903772669403462, guid: 69eb566ae5963b3479393d6b50c21b21, type: 3}
       propertyPath: m_Name
       value: WeaponController
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686524091317443596, guid: 69eb566ae5963b3479393d6b50c21b21, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.293
       objectReference: {fileID: 0}
     - target: {fileID: 9082465218672808180, guid: 69eb566ae5963b3479393d6b50c21b21, type: 3}
       propertyPath: m_LocalPosition.x
