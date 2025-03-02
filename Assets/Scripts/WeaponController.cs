@@ -8,13 +8,12 @@ public class WeaponController : MonoBehaviour, IHasParentGuid
     [SerializeField] Transform ammoAnchor;
 
     Guid _id;
-    Guid _parentID;
-    public Guid parentID => _parentID;
+    public Guid parentID { get; set; }
 
     void OnEnable()
     {
         _id = Guid.NewGuid();
-        _parentID = GetComponentInParent<IHasGuid>().id;
+        parentID = GetComponentInParent<IHasGuid>().id;
         messageQueue.Subscribe(GlobalSlugs.WEAPON_FIRED, HandleWeaponFired);
         messageQueue.Publish(GlobalSlugs.WEAPON_ADDED_TO_BATTLE, new WeaponState(_id, 0f, weapon.attackSpeed, weapon.range, parentID));
     }
@@ -23,7 +22,7 @@ public class WeaponController : MonoBehaviour, IHasParentGuid
     {
         messageQueue.Unsubscribe(GlobalSlugs.WEAPON_FIRED, HandleWeaponFired);
         messageQueue.Publish(GlobalSlugs.WEAPON_REMOVED_FROM_BATTLE, _id);
-        _parentID = Guid.Empty;
+        parentID = Guid.Empty;
         _id = Guid.Empty;
     }
 
@@ -32,7 +31,9 @@ public class WeaponController : MonoBehaviour, IHasParentGuid
         var weapon = (WeaponState)obj;
         if(weapon.id == _id)
         {
-            var ammo = AmmoFactory.Instance.GetObject(ammoAnchor.position, ammoAnchor.rotation);
+            AmmoController ammo = AmmoFactory.Instance.GetObject(ammoAnchor.position, ammoAnchor.rotation, false);
+            ammo.parentID = _id;
+            ammo.gameObject.SetActive(true);
         }
     }
 }

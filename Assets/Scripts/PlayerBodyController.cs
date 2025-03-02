@@ -7,12 +7,11 @@ public class PlayerBodyController : MonoBehaviour, IHasParentGuid
     [SerializeField] Material deadMaterial;
     [SerializeField] Material aliveMaterial;
 
-    Guid _parentID;
-    public Guid parentID => _parentID;
+    public Guid parentID { get; set; }
 
     void OnEnable()
     {
-        _parentID = GetComponentInParent<IHasGuid>().id;
+        parentID = GetComponentInParent<IHasGuid>().id;
         GetComponentInChildren<Renderer>().sharedMaterial = aliveMaterial;
         messageQueue.Subscribe(GlobalSlugs.PLAYER_DIED, HandlePlayerDied);
     }
@@ -20,7 +19,7 @@ public class PlayerBodyController : MonoBehaviour, IHasParentGuid
     void OnDisable()
     {
         messageQueue.Unsubscribe(GlobalSlugs.PLAYER_DIED, HandlePlayerDied);
-        _parentID = Guid.Empty;
+        parentID = Guid.Empty;
     }
 
     void HandlePlayerDied(object obj)

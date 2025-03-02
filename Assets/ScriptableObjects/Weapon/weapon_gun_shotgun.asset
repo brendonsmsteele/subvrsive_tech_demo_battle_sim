@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: weapon_gun_shotgun
   m_EditorClassIdentifier: 
   _attackSpeed: 2
-  _range: 2
+  _range: 6
   _ammo: {fileID: 11400000, guid: 56468d116f008fc4c987beaa24c701d9, type: 2}

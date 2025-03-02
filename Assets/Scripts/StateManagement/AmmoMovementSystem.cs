@@ -7,6 +7,7 @@ public class AmmoMovementSystem : BaseSystem
     {
         if (gameState == GameState.None || gameState == GameState.PreGame) return;
 
+        var weapons = GameStateManager.Instance.GetAllWeapons();
         var ammoStates = GameStateManager.Instance.GetAllAmmo();
         var ammoIDs = GameStateManager.Instance.GetAllAmmoIDs();
 
@@ -14,13 +15,14 @@ public class AmmoMovementSystem : BaseSystem
         {
             var id = ammoIDs[i];
             AmmoState ammo = ammoStates[id];
+            WeaponState weapon = weapons[ammo.weaponID];
             Vector3 movement = ammo.direction * ammo.speed * Time.deltaTime;
             Vector3 position = ammo.position + movement;
-            bool exceededMaxRange = (position - ammo.initialPosition).magnitude > ammo.range;
+            bool exceededMaxRange = (position - ammo.initialPosition).magnitude > weapon.range;
             if (exceededMaxRange)
-                position = ammo.initialPosition + ammo.direction.normalized * ammo.range;
+                position = ammo.initialPosition + ammo.direction.normalized * weapon.range;
 
-            AmmoState newState = new AmmoState(ammo.id, position, ammo.direction, ammo.initialPosition, ammo.damage, ammo.speed, ammo.range);
+            AmmoState newState = new AmmoState(ammo.id, position, ammo.direction, ammo.initialPosition, ammo.damage, ammo.speed, ammo.weaponID);
             messageQueue.Publish(GlobalSlugs.AMMO_STATE_CHANGED, newState);
             if (exceededMaxRange)
                 messageQueue.Publish(GlobalSlugs.AMMO_DESPAWN, newState);

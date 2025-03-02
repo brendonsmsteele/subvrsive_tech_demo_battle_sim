@@ -77,9 +77,9 @@ public struct AmmoState
     public Vector3 initialPosition;
     public float damage;
     public float speed;
-    public float range;
+    public Guid weaponID;
 
-    public AmmoState(Guid id, Vector3 position, Vector3 direction, Vector3 initialPosition, float damage, float speed, float range)
+    public AmmoState(Guid id, Vector3 position, Vector3 direction, Vector3 initialPosition, float damage, float speed, Guid weaponID)
     {
         this.id = id;
         this.position = position;
@@ -87,7 +87,7 @@ public struct AmmoState
         this.initialPosition = initialPosition;
         this.damage = damage;
         this.speed = speed;
-        this.range = range;
+        this.weaponID = weaponID;
     }
 
     public AmmoState(AmmoState state)
@@ -98,7 +98,7 @@ public struct AmmoState
         this.initialPosition = state.initialPosition;
         this.damage = state.damage;
         this.speed = state.speed;
-        this.range = state.range;
+        this.weaponID = state.weaponID;
     }
 }
 

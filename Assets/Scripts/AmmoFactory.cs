@@ -20,9 +20,9 @@ public class AmmoFactory : MonoBehaviour, IFactory<AmmoController>
         }
     }
 
-    public AmmoController GetObject(Vector3 position, Quaternion rotation)
+    public AmmoController GetObject(Vector3 position, Quaternion rotation, bool setActive = true)
     {
-        GameObject go = ammoPooler.GetObject(position, rotation);
+        GameObject go = ammoPooler.GetObject(position, rotation, setActive);
         return go.GetComponent<AmmoController>();
     }
 

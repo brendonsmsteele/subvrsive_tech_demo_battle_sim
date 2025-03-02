@@ -25,7 +25,7 @@ public class PrefabPooler : MonoBehaviour
         }
     }
 
-    public GameObject GetObject(Vector3 position, Quaternion rotation)
+    public GameObject GetObject(Vector3 position, Quaternion rotation, bool setActive = true)
     {
         if (pool.Count == 0)
         {
@@ -36,7 +36,8 @@ public class PrefabPooler : MonoBehaviour
         GameObject obj = pool.Dequeue();
         obj.transform.position = position;
         obj.transform.rotation = rotation;
-        obj.SetActive(true);
+        if(setActive)
+            obj.SetActive(true);
         return obj;
     }
 

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: weapon_gun_rocket_launcher
   m_EditorClassIdentifier: 
   _attackSpeed: 1
-  _range: 10
+  _range: 20
   _ammo: {fileID: 11400000, guid: 9c803a143e52f2d44bb7a0f25873c2a3, type: 2}

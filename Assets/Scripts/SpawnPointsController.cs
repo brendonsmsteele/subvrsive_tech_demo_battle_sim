@@ -12,24 +12,6 @@ public class SpawnPointsController : MonoBehaviour
     void Start()
     {
         _points = GetComponentsInChildren<Transform>().Where(t => t != transform).ToArray();
-        Debug.Log(points.Count);
-    }
-
-    void Update()
-    {
-        
-    }
-
-    void OnEnable()
-    {
-        messageQueue.Subscribe(GlobalSlugs.PRE_BATTLE_STARTED, HandlePreBattleStarted);
-        messageQueue.Subscribe(GlobalSlugs.BATTLE_ENDED, HandleBattleEnded);
-    }
-
-    void OnDisable()
-    {
-        messageQueue.Unsubscribe(GlobalSlugs.PRE_BATTLE_STARTED, HandlePreBattleStarted);
-        messageQueue.Unsubscribe(GlobalSlugs.BATTLE_ENDED, HandleBattleEnded);
     }
 
     private void OnDrawGizmos()
@@ -40,29 +22,5 @@ public class SpawnPointsController : MonoBehaviour
             Gizmos.DrawWireCube(point.position, Vector3.one);
             Gizmos.DrawRay(new Ray(point.position, point.forward));
         }
-    }
-
-    void HandlePreBattleStarted(object obj)
-    {
-        SpawnPlayers();
-    }
-
-    void HandleBattleEnded(object obj)
-    {
-    }
-
-    void SpawnPlayers()
-    {
-        foreach (Transform point in points)
-        {
-            var go = SpawnPlayer(point);
-        }
-    }
-
-    GameObject SpawnPlayer(Transform point)
-    {
-        var player = PlayerFactory.Instance.GetObject(point.position, point.rotation);
-        player.transform.SetParent(transform, true);
-        return player.gameObject;
     }
 }

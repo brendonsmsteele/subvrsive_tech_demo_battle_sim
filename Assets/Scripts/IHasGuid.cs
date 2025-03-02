@@ -7,5 +7,5 @@ public interface IHasGuid
 
 public interface IHasParentGuid
 {
-    Guid parentID { get; }
+    Guid parentID { get; set; }
 }

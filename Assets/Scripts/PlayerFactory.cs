@@ -21,7 +21,7 @@ public class PlayerFactory : MonoBehaviour, IFactory<PlayerRigController>
         }
     }
 
-    public PlayerRigController GetObject(Vector3 position, Quaternion rotation)
+    public PlayerRigController GetObject(Vector3 position, Quaternion rotation, bool setActive = true)
     {
         GameObject go = playerPool.GetObject(position, rotation);
         return go.GetComponent<PlayerRigController>();

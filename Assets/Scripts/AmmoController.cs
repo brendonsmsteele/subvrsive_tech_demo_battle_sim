@@ -2,20 +2,22 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
 
-public class AmmoController : MonoBehaviour, IHasGuid
+public class AmmoController : MonoBehaviour, IHasGuid, IHasParentGuid
 {
     [SerializeField] MessageQueue messageQueue;
     [SerializeField] Ammo ammo;
 
     Guid _id;
     public Guid id => _id;
+    public Guid parentID { get; set; }
+
 
     void OnEnable()
     {
         _id = Guid.NewGuid();
         messageQueue.Subscribe(GlobalSlugs.AMMO_STATE_CHANGED, HandleAmmoStateChanged);
         messageQueue.Subscribe(GlobalSlugs.AMMO_DESPAWN, HandleAmmoDespawn);
-        messageQueue.Publish(GlobalSlugs.AMMO_ADDED_TO_BATTLE, new AmmoState(id, transform.position, transform.forward, transform.position, ammo.damage, ammo.speed, ammo.range));
+        messageQueue.Publish(GlobalSlugs.AMMO_ADDED_TO_BATTLE, new AmmoState(id, transform.position, transform.forward, transform.position, ammo.damage, ammo.speed, parentID));
     }
 
     void OnDisable()
@@ -23,12 +25,17 @@ public class AmmoController : MonoBehaviour, IHasGuid
         messageQueue.Unsubscribe(GlobalSlugs.AMMO_STATE_CHANGED, HandleAmmoStateChanged);
         messageQueue.Unsubscribe(GlobalSlugs.AMMO_DESPAWN, HandleAmmoDespawn);
         messageQueue.Publish(GlobalSlugs.AMMO_REMOVED_FROM_BATTLE, id);
+        parentID = Guid.Empty;
         _id = Guid.Empty;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(id == Guid.Empty)
+        {
+            Debug.Log("A phantom hit - probably due to ammo hitting two colliders in the same frame, thus triggering a second time after has returned to the pool.");
+        }
+        else if (other.tag == "Player")
         {
             var playerID = other.GetComponent<PlayerRigController>().id;
             var playerHitState = new PlayerHitState(playerID, id);
