@@ -15,9 +15,15 @@ public class AmmoMovementSystem : BaseSystem
             var id = ammoIDs[i];
             AmmoState ammo = ammoStates[id];
             Vector3 movement = ammo.direction * ammo.speed * Time.deltaTime;
+            Vector3 position = ammo.position + movement;
+            bool exceededMaxRange = (position - ammo.initialPosition).magnitude > ammo.range;
+            if (exceededMaxRange)
+                position = ammo.initialPosition + ammo.direction.normalized * ammo.range;
 
-            AmmoState newState = new AmmoState(ammo.id, ammo.position + movement, ammo.direction, ammo.damage, ammo.speed);
+            AmmoState newState = new AmmoState(ammo.id, position, ammo.direction, ammo.initialPosition, ammo.damage, ammo.speed, ammo.range);
             messageQueue.Publish(GlobalSlugs.AMMO_STATE_CHANGED, newState);
+            if (exceededMaxRange)
+                messageQueue.Publish(GlobalSlugs.AMMO_DESPAWN, newState);
         }
     }
 }

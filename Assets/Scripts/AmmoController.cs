@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 public class AmmoController : MonoBehaviour, IHasGuid
 {
@@ -13,12 +14,14 @@ public class AmmoController : MonoBehaviour, IHasGuid
     {
         _id = Guid.NewGuid();
         messageQueue.Subscribe(GlobalSlugs.AMMO_STATE_CHANGED, HandleAmmoStateChanged);
-        messageQueue.Publish(GlobalSlugs.AMMO_ADDED_TO_BATTLE, new AmmoState(id, transform.position, transform.forward, ammo.damage, ammo.speed));
+        messageQueue.Subscribe(GlobalSlugs.AMMO_DESPAWN, HandleAmmoDespawn);
+        messageQueue.Publish(GlobalSlugs.AMMO_ADDED_TO_BATTLE, new AmmoState(id, transform.position, transform.forward, transform.position, ammo.damage, ammo.speed, ammo.range));
     }
 
     void OnDisable()
     {
         messageQueue.Unsubscribe(GlobalSlugs.AMMO_STATE_CHANGED, HandleAmmoStateChanged);
+        messageQueue.Unsubscribe(GlobalSlugs.AMMO_DESPAWN, HandleAmmoDespawn);
         messageQueue.Publish(GlobalSlugs.AMMO_REMOVED_FROM_BATTLE, id);
         _id = Guid.Empty;
     }
@@ -39,5 +42,12 @@ public class AmmoController : MonoBehaviour, IHasGuid
         var ammo = (AmmoState)obj;
         if(ammo.id == id)
             transform.position = ammo.position;
+    }
+
+    void HandleAmmoDespawn(object obj)
+    {
+        var ammo = (AmmoState)obj;
+        if(ammo.id == id)
+            AmmoFactory.Instance.ReturnObject(this.gameObject);
     }
 }
