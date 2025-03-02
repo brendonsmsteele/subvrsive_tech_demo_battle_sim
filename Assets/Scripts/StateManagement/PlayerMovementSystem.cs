@@ -17,15 +17,17 @@ public class PlayerMovementSystem : BaseSystem
             PlayerState player = players[id];
             PlayerState targetPlayer = players[player.targetID];
 
-            float stopShortInMeters = 5f;
+            float stopShortDistance = 10f;
             float scaleMovementSoItFeelsGood = .3f;
-            float thisFrameIntendedMagnitude = player.moveSpeed * Time.deltaTime * scaleMovementSoItFeelsGood;
-            Vector3 targetPlayersFacePosition = targetPlayer.position + targetPlayer.rotation.eulerAngles.normalized;
-            Vector3 vectorFromAToB = targetPlayersFacePosition - player.position;
-            float aToBeMagnitude = vectorFromAToB.magnitude;
-            Vector3 clamp = vectorFromAToB.normalized * Mathf.Max(0f, aToBeMagnitude - stopShortInMeters);
+            float thisFramePredictedMovement = player.moveSpeed * Time.deltaTime * scaleMovementSoItFeelsGood;
+            Vector3 forwardRotation = targetPlayer.rotation * Vector3.forward;
+            //Vector3 targetPlayersFacePosition = targetPlayer.position + forwardRotation.normalized * distanceFromTargetsFace;
+            Vector3 vectorFromAToB = targetPlayer.position - player.position;
+            Vector3 vectorFromAToBStopShort = vectorFromAToB.normalized * Mathf.Max(vectorFromAToB.magnitude - stopShortDistance, 0f);
+            Vector3 clamp = vectorFromAToB.normalized * Mathf.Min(vectorFromAToBStopShort.magnitude, thisFramePredictedMovement);
             Vector3 thisFramePosition = player.position + clamp;
-            Vector3 yPlaneLockedMovement = new Vector3(thisFramePosition.x, 0f, thisFramePosition.z);
+
+            Vector3 yPlaneLockedMovement = new Vector3(thisFramePosition.x, 0f, thisFramePosition.z); // HACK: Corrects for drift
 
             PlayerState newState = new PlayerState(player.id, yPlaneLockedMovement, player.rotation, player.health, player.maxHealth, player.moveSpeed, player.rotateSpeed, player.attackDelay, player.isDead, player.targetID);
             messageQueue.Publish(GlobalSlugs.PLAYER_STATE_CHANGED, newState);

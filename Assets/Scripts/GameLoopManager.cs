@@ -5,7 +5,7 @@ public class GameLoopManager : MonoBehaviour
 {
     [SerializeField] MessageQueue messageQueue;
 
-    float delayGameStartup = 2f;
+    float delayGameStartup = 0f;
 
     bool isPreGameComplete = false;
     bool isActiveGameComplete = false;
