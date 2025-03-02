@@ -46,7 +46,7 @@ public class PrefabPooler : MonoBehaviour
         pool.Enqueue(obj);
     }
 
-    public void ReturnlAllObjects()
+    public void ReturnAllObjects()
     {
         for(int i=0; i<pool.Count; i++)
         {

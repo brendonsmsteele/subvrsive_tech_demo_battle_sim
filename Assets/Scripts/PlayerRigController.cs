@@ -1,14 +1,13 @@
 using UnityEngine;
 using System;
 
-public class PlayerRigController: MonoBehaviour, IHasGuid, IHasPrefabPooler
+public class PlayerRigController: MonoBehaviour, IHasGuid
 {
     [SerializeField] MessageQueue messageQueue;
     [SerializeField] Character character;
 
     [SerializeField] Guid _id;
     public Guid id => _id;
-    public PrefabPooler pool { get; set; }
 
     void OnEnable()
     {
@@ -24,7 +23,6 @@ public class PlayerRigController: MonoBehaviour, IHasGuid, IHasPrefabPooler
         messageQueue.Publish(GlobalSlugs.PLAYER_REMOVED_FROM_BATTLE, _id);
         messageQueue.Unsubscribe(GlobalSlugs.PLAYER_ROTATION_CHANGED, HandlePlayerRotationChanged);
         messageQueue.Unsubscribe(GlobalSlugs.PLAYER_POSITION_CHANGED, HandlePlayerPositionChanged);
-        pool = null;
         _id = Guid.Empty;
     }
 
